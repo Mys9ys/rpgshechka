@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+// логин через соцсети
+Route::post('ulogin', 'UloginController@login');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/reset', 'Reset@reset'); // сброс всех данных

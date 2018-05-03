@@ -1,0 +1,33 @@
+#uLogin {
+  display: none;
+}
+.login_social {
+  padding: 10px;
+  margin: auto;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.user_header {
+  display: inline-block;
+  padding: 5px!important;
+}
+.user_avatar {
+  display: inline-block;
+  height: 50px;
+  border: 1px solid #9cc218;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+.user_avatar img {
+  max-height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.user_nik {
+  display: inline-block;
+  padding: 5px;
+}
+.health_bar {
+  display: inline-block;
+}

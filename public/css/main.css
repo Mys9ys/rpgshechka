@@ -1,0 +1,12 @@
+#loginModal {
+  display: none;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clr {
+  clear: both;
+}
