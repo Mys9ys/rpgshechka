@@ -40,17 +40,25 @@
             <ul class="nav navbar-nav navbar-left">
                 @if(Auth::guest())
                     <li class="dropdown">
-                        <div class="login_social">Войти</div>
+
+                        <div class="login_social">
+                            <img src="/public/image/door_user.png" alt="">
+                            <span>Добро пожаловать!</span>
+                        </div>
                     </li>
                 @else
                     <?if(Auth::user()->role == 'admin'){ $active = 'Y';} else {$active = 'N';}?>
                     <div class="user_info" data-user="{{ Auth::user()->id }}" data-active="<?=$active?>"></div>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle user_header" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <div class="user_avatar left"><img src="{{ Auth::user()->avatar }}" alt=""> </div> <div class="user_nik left">{{ Auth::user()->nik }}</div>
+                        <a href="#" class="dropdown-toggle user_header left" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <div class="user_avatar left"><img src="{{ Auth::user()->avatar }}" alt=""> </div>
                         </a>
-                        <div class="health_bar left">health_bar</div>
-                        <div class="energy_bar left">energy_bar</div>
+                        <div class="user_info">
+                            <div class="user_nik left">{{ Auth::user()->nik }}</div>
+                            <div class="health_bar left">health_bar</div>
+                            <div class="energy_bar left">energy_bar</div>
+                        </div>
+
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 {{--<a href="{{ route('message') }}" class="messages">--}}
