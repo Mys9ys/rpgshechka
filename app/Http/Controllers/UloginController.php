@@ -77,8 +77,10 @@ class UloginController extends Controller
 
             $user_combat_prop = CombatProp::create([
                 'user' => $newUser->id,
-                'health' => 50,
-                'energy' => 100
+                'health_const' => 50,
+                'health_really' => 50,
+                'energy_const' => 100,
+                'energy_really' => 100
             ]);
 
             // первая ачивка

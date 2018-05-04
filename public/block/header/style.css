@@ -26,8 +26,83 @@
 }
 .user_nik {
   display: inline-block;
-  padding: 5px;
+  padding-bottom: 0;
+  font-family: 'Ruslan', arial;
+  font-size: 16px;
+}
+.user_bar_wrap {
+  font-size: 11px;
+  line-height: 11px;
+}
+.user_bar {
+  display: block;
+  width: 100px;
+  height: 15px;
+  color: #ffffff;
+  background: #122b40;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  text-align: center;
+  box-shadow: inset 0px 2px 8px 0px rgba(40, 40, 40, 0.3);
 }
 .health_bar {
-  display: inline-block;
+  border-color: #ff4e33;
+}
+.fa-icon {
+  width: 12px;
+  line-height: 11px;
+  margin-right: 3px;
+  margin-top: 2px;
+  text-align: center;
+}
+.fa-heart {
+  color: #ff4e33;
+}
+.energy_bar {
+  border-color: #9cc218;
+}
+.fa-bolt {
+  color: #9cc218;
+}
+.money_box {
+  font-family: "Comic Sans MS";
+  display: block;
+  width: 100px;
+  height: 15px;
+  font-size: 11px;
+  line-height: 11px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0px 4px;
+}
+.coin_icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border-right-width: 1px;
+  border-right-style: solid;
+  margin: 1px 3px;
+}
+.coin_silver {
+  background: #c0c0c0;
+  border-right-color: #48d1cc;
+}
+.coin_cuprum {
+  background: #b87333;
+  border-right-color: #48d1cc;
+}
+.coin_gold {
+  background: #ffd700;
+  border-right-color: #c0c0c0;
+}
+.money_gold {
+  border-color: #ffd700;
+}
+.money_silver {
+  border-color: #c0c0c0;
+}
+.money_cuprum {
+  border-color: #b87333;
 }

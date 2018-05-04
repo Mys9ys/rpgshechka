@@ -9,6 +9,6 @@ class CombatProp extends Model
     protected $table = 'user_combat_prop';
 
     protected $fillable = [
-        'user', 'health', 'energy', 'first_name', 'last_name'
+        'user', 'health_const', 'health_really', 'energy_const', 'energy_really', 'first_name', 'last_name'
     ];
 }

@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Ruslan';
+  src: url('/public/fonts/Ruslan.ttf') format('truetype');
+  /* Только если нужна поддержка старых Android, иначе закомментировать */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Paddis';
+  src: url('/public/fonts/Paddis.ttf') format('truetype');
+  /* Только если нужна поддержка старых Android, иначе закомментировать */
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-size: 18px;
+  color: #282828;
+}
 #loginModal {
   display: none;
 }
