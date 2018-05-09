@@ -13,6 +13,8 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'ulogin',
-        '/reset'
+        '/reset',
+        '/Ajax/HP_fill',
+        '/HP_full'
     ];
 }

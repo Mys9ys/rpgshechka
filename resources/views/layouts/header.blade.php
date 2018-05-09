@@ -17,14 +17,15 @@
 {{--<link href="{{ asset('public/css/bootstrap.min.css') }}" rel="stylesheet">--}}
 
 <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="http://allfont.ru/allfont.css?fonts=cyrillicold" rel="stylesheet" type="text/css"/>
+    {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
+    {{--<link href="http://allfont.ru/allfont.css?fonts=cyrillicold" rel="stylesheet" type="text/css"/>--}}
     <link href="{{ asset('public/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('public/js/jquery-3.0.0.min.js') }}"></script>
     <script src="{{ asset('public/js/jquery.cookie.js') }}"></script>
     <script src="{{ asset('public/js/main.js') }}"></script>
+    <script src="{{ asset('public/block/header/script.js') }}"></script>
 </head>
 
 <nav class="navbar navbar-default navbar-static-top">
@@ -58,40 +59,55 @@
                             <div class="user_avatar left"><img src="{{ Auth::user()->avatar }}" alt=""></div>
                         </a>
                         <div class="user_info left">
-                            <?$UserCombatProps = \App\user\CombatProp::where('user', '=', Auth::user()->id)->get();?>
+                            <?$UserProps = \App\user\Props::where('user', '=', Auth::user()->id)->get();?>
                             <div class="user_nik ">{{ Auth::user()->nik }}</div>
                             <div class="user_info_contain">
                                 <div class="user_bars left">
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-heart fa-icon left" aria-hidden="true"></i>
+                                        <?if(!empty(Session::get('HP_really')) && Session::get('HP_really')>$UserProps[0]['health_really'])
+                                            {$UserProps[0]['health_really']=Session::get('HP_really');}?>
                                         <div class="health_bar user_bar left"
-                                             data-health_const="<?=$UserCombatProps[0]['health_const']?>"
-                                             data-health_really="<?=$UserCombatProps[0]['health_really']?>"></div>
+                                             data-health_const="<?=$UserProps[0]['health_const']?>"
+                                             data-health_really="<?=$UserProps[0]['health_really']?>"></div>
                                     </div>
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-bolt fa-icon left" aria-hidden="true"></i>
                                         <div class="energy_bar user_bar left"
-                                             data-energy_const="<?=$UserCombatProps[0]['energy_const']?>"
-                                            data-energy_really="<?=$UserCombatProps[0]['energy_really']?>"></div>
+                                             data-energy_const="<?=$UserProps[0]['energy_const']?>"
+                                            data-energy_really="<?=$UserProps[0]['energy_really']?>"></div>
                                     </div>
-
+                                </div>
+                                <div class="user_bars left">
+                                    <div class="user_bar_wrap">
+                                        <span class="left fa-icon XP_icon">xp</span>
+                                        <div class="XP_bar user_bar left"
+                                             {{--data-health_const="<?=$UserProps[0]['health_const']?>"--}}
+                                             data-XP_really="<?=$UserProps[0]['XP']?>"></div>
+                                    </div>
+                                    <div class="user_bar_wrap">
+                                        <i class="fa fa-star fa-icon left" aria-hidden="true"></i>
+                                        <div class="activism_bar user_bar left"
+                                             {{--data-energy_const="<?=$UserProps[0]['energy_const']?>"--}}
+                                             data-activism_really="<?=$UserProps[0]['energy_really']?>"></div>
+                                    </div>
                                 </div>
                                 <div class="user_money left">
-                                    <?$UserProp = \App\user\Prop::where('user', '=', Auth::user()->id)->get();?>
+                                    <div class="user_money_wrap">
+                                        <div class="coin_icon coin_gold left"></div>
+                                        <div class="money_gold money_box left"><?=$UserProps[0]['gold']?></div>
+                                    </div>
                                     <div class="user_money_wrap">
                                         <div class="coin_icon coin_silver left"></div>
-                                        <div class="money_silver money_box left"><?=$UserProp[0]['money_silver']?></div>
+                                        <div class="money_silver money_box left"><?=$UserProps[0]['silver']?></div>
                                     </div>
                                     <div class="user_money_wrap">
                                         <div class="coin_icon coin_cuprum left"></div>
-                                        <div class="money_cuprum money_box left"><?=$UserProp[0]['money_cuprum']?></div>
+                                        <div class="money_cuprum money_box left"><?=$UserProps[0]['cuprum']?></div>
                                     </div>
 
                                 </div>
-                                <div class="user_money_wrap left">
-                                    <div class="coin_icon coin_gold left"></div>
-                                    <div class="money_gold money_box left"><?=$UserProp[0]['money_gold']?></div>
-                                </div>
+
 
                             </div>
                         </div>

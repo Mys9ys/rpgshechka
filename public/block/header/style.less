@@ -13,59 +13,93 @@
 }
 .user_avatar{
   display: inline-block;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border: 1px solid rgb(156, 194, 24);
   border-radius:20px 20px 0 0;
   overflow: hidden;
   img{
-    max-height: 100%;
-    background-size: contain;
+    max-width: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
 }
-.user_nik{
-  display: inline-block;
-  padding-bottom: 0;
-  font-family: 'Ruslan', arial;
-  font-size: 16px;
-}
-.user_bar_wrap{
-  font-size: 11px;
-  line-height: 11px;
-}
-.user_bar{
-  display: block;
-  width: 100px;
-  height: 15px;
-  color: rgb(255,255,255);
-  background: #122b40;
-  border-radius: 5px;
-  border-width: 2px;
-  border-style: solid;
-  text-align: center;
-  box-shadow: inset 0px 2px 8px 0px rgba(40, 40, 40, 0.3);
-}
-.health_bar{
- border-color: rgb(255, 78, 51);
-}
-.fa-icon{
-  width: 12px;
-  line-height: 11px;
-  margin-right: 3px;
-  margin-top: 2px;
-  text-align: center;
-}
-.fa-heart{
-  color: rgb(255, 78, 51);
+.user_info{
 
-}
-.energy_bar{
-  border-color: rgb(156, 194, 24);
-}
-.fa-bolt{
-  color: rgb(156, 194, 24);
-}
+  .user_nik{
+    display: inline-block;
+    padding-bottom: 0;
+    font-family: 'Ruslan', arial;
+    font-size: 16px;
+  }
+  .user_bar_wrap{
+    font-size: 11px;
+    line-height: 11px;
+  }
+  .user_bar{
+    position: relative;
+    display: block;
+    width: 104px;
+    height: 19px;
+    color: rgb(255,255,255);
+    background: #122b40;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+    box-shadow: inset 0px 2px 8px 0px rgba(40, 40, 40, 0.3);
+    margin-bottom: 3px;
+  }
+  .user_bar_fill{
+    display: inline-block;
+    //width: 100px;
+    height: 15px;
+    position: absolute;
+    left:0;
+  }
+  .user_bar_fill_text{
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    left:0;
+    width: 100%;
+    height:100%;
+  }
+  .health_bar{
+    border-color: rgb(255, 78, 51);
+  }
+  .fa-icon{
+    width: 12px;
+    line-height: 11px;
+    margin: 3px;
+    text-align: center;
+  }
+  .fa-heart{
+    color: rgb(255, 78, 51);
+
+  }
+  .energy_bar{
+    border-color: rgb(156, 194, 24);
+  }
+  .fa-bolt{
+    color: rgb(156, 194, 24);
+  }
+  .XP_bar{
+    border-color: rgb(34,164,245);
+  }
+  .XP_icon{
+    color: rgb(34,164,245);
+    //color: rgb(0,110,189);
+  }
+  .fa-star{
+    color:rgb(153,50,204);
+  }
+  .activism_bar{
+    border-color: rgb(153,50,204);
+  }
+
+
 .money_box{
   font-family: "Comic Sans MS";
   display: block;
@@ -79,32 +113,34 @@
   border-radius: 5px;
   padding: 0px 4px;
 }
-.coin_icon{
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border-right-width: 1px;
-  border-right-style:  solid;
-  margin: 1px 3px;
-}
-.coin_silver{
-  background: rgb(192, 192, 192);
-  border-right-color: rgb(72, 209, 204);
-}
-.coin_cuprum{
-  background: rgb(184, 115, 51);
-  border-right-color: rgb(72, 209, 204);
-}
-.coin_gold{
-  background: rgb(255, 215, 0);
-  border-right-color: rgb(192, 192, 192);
-}
-.money_gold{
-  border-color: rgb(255, 215, 0);
-}
-.money_silver{
-  border-color: rgb(192, 192, 192);
-}
-.money_cuprum{
-  border-color: rgb(184, 115, 51);
+  .coin_icon{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border-right-width: 1px;
+    border-right-style:  solid;
+    margin: 1px 3px;
+  }
+  .coin_silver{
+    background: rgb(192, 192, 192);
+    border-right-color: rgb(72, 209, 204);
+  }
+  .coin_cuprum{
+    background: rgb(184, 115, 51);
+    border-right-color: rgb(72, 209, 204);
+  }
+  .coin_gold{
+    background: rgb(255, 215, 0);
+    border-right-color: rgb(192, 192, 192);
+  }
+  .money_gold{
+    border-color: rgb(255, 215, 0);
+  }
+  .money_silver{
+    border-color: rgb(192, 192, 192);
+  }
+  .money_cuprum{
+    border-color: rgb(184, 115, 51);
+  }
+
 }

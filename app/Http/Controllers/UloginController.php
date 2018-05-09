@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 //use App\Matches;
 //use App\Message;
-use App\user\CombatProp;
-use App\user\Prop;
+use App\user\Props;
+use App\user\CombatProps;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -69,13 +69,13 @@ class UloginController extends Controller
 
             \Session::flash('flash_message', trans('interface.ActivatedSuccess'));
 
-            $user_prop = Prop::create([
+            $user_prop = CombatProps::create([
                 'user' => $newUser->id,
                 'money_silver' => 100,
                 'money_gold' => 10
             ]);
 
-            $user_combat_prop = CombatProp::create([
+            $user_combat_prop = Props::create([
                 'user' => $newUser->id,
                 'health_const' => 50,
                 'health_really' => 50,
