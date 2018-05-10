@@ -9,6 +9,6 @@ class CombatProps extends Model
     protected $table = 'userCombatProps';
 
     protected $fillable = [
-        'user', 'money_silver', 'money_gold', 'first_name', 'last_name'
+        'user',
     ];
 }
