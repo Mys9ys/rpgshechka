@@ -10,5 +10,10 @@ class CombatProps extends Model
 
     protected $fillable = [
         'user',
+        'health_const',
+        'health_really',
+        'energy_const',
+        'energy_really',
+        'cube'
     ];
 }

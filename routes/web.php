@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/battle', 'BattleController@execute')->name('battle');
 
+Route::post('/warriorProps', 'Ajax\BattleDetail@warriorProps'); //запрос параметров сражающихся
 Route::post('/Ajax/HP_fill', 'Ajax\HP_fill@HP_fill'); // востановление жизни
 Route::post('/HP_full', 'Ajax\HP_fill@HP_full'); //восстановление жизни полностью
 

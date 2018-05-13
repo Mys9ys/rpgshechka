@@ -15,6 +15,7 @@ class VerifyCsrfToken extends BaseVerifier
         'ulogin',
         '/reset',
         '/Ajax/HP_fill',
-        '/HP_full'
+        '/HP_full',
+        '/warriorProps',
     ];
 }

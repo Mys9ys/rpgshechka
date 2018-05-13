@@ -59,51 +59,52 @@
                             <div class="user_avatar left"><img src="{{ Auth::user()->avatar }}" alt=""></div>
                         </a>
                         <div class="user_info left">
-                            <?$UserProps = \App\user\Props::where('user', '=', Auth::user()->id)->get();?>
+                            <?$CombatProps = \App\user\CombatProps::where('user', '=', Auth::id())->first();?>
                             <div class="user_nik ">{{ Auth::user()->nik }}</div>
                             <div class="user_info_contain">
                                 <div class="user_bars left">
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-heart fa-icon left" aria-hidden="true"></i>
-                                        <?if(!empty(Session::get('HP_really')) && Session::get('HP_really')>$UserProps[0]['health_really'])
-                                            {$UserProps[0]['health_really']=Session::get('HP_really');}?>
+                                        <?if(!empty(Session::get('HP_really')) && Session::get('HP_really')>$CombatProps['health_really'])
+                                            {$CombatProps['health_really']=Session::get('HP_really');}?>
                                         <div class="health_bar user_bar left"
-                                             data-health_const="<?=$UserProps[0]['health_const']?>"
-                                             data-health_really="<?=$UserProps[0]['health_really']?>"></div>
+                                             data-health_const="<?=$CombatProps['health_const']?>"
+                                             data-health_really="<?=$CombatProps['health_really']?>"></div>
                                     </div>
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-bolt fa-icon left" aria-hidden="true"></i>
                                         <div class="energy_bar user_bar left"
-                                             data-energy_const="<?=$UserProps[0]['energy_const']?>"
-                                            data-energy_really="<?=$UserProps[0]['energy_really']?>"></div>
+                                             data-energy_const="<?=$CombatProps['energy_const']?>"
+                                            data-energy_really="<?=$CombatProps['energy_really']?>"></div>
                                     </div>
                                 </div>
                                 <div class="user_bars left">
                                     <div class="user_bar_wrap">
                                         <span class="left fa-icon XP_icon">xp</span>
                                         <div class="XP_bar user_bar left"
-                                             {{--data-health_const="<?=$UserProps[0]['health_const']?>"--}}
-                                             data-XP_really="<?=$UserProps[0]['XP']?>"></div>
+
+                                             data-XP_really="<?=$CombatProps['XP']?>"></div>
                                     </div>
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-star fa-icon left" aria-hidden="true"></i>
                                         <div class="activism_bar user_bar left"
-                                             {{--data-energy_const="<?=$UserProps[0]['energy_const']?>"--}}
-                                             data-activism_really="<?=$UserProps[0]['energy_really']?>"></div>
+
+                                             data-activism_really="<?=$CombatProps['energy_really']?>"></div>
                                     </div>
                                 </div>
                                 <div class="user_money left">
+                                    <?$UserProps = \App\user\Props::where('user', '=', Auth::id())->first();?>
                                     <div class="user_money_wrap">
                                         <div class="coin_icon coin_gold left"></div>
-                                        <div class="money_gold money_box left"><?=$UserProps[0]['gold']?></div>
+                                        <div class="money_gold money_box left"><?=$UserProps['gold']?></div>
                                     </div>
                                     <div class="user_money_wrap">
                                         <div class="coin_icon coin_silver left"></div>
-                                        <div class="money_silver money_box left"><?=$UserProps[0]['silver']?></div>
+                                        <div class="money_silver money_box left"><?=$UserProps['silver']?></div>
                                     </div>
                                     <div class="user_money_wrap">
                                         <div class="coin_icon coin_cuprum left"></div>
-                                        <div class="money_cuprum money_box left"><?=$UserProps[0]['cuprum']?></div>
+                                        <div class="money_cuprum money_box left"><?=$UserProps['cuprum']?></div>
                                     </div>
 
                                 </div>

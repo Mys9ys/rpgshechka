@@ -121,3 +121,34 @@
   display: inline-block;
   color: #ffffff;
 }
+.loot_item {
+  display: inline-block;
+  width: 50px;
+  height: auto;
+  margin: 5px;
+}
+.loot_item .loot_img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #282828;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.loot_item .loot_img img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.loot_item .loot_count {
+  display: block;
+  width: 50px;
+  padding: 0 2px;
+  font-size: 11px;
+  border-radius: 5px;
+  border: 1px solid #282828;
+  text-align: center;
+  margin: 0;
+}

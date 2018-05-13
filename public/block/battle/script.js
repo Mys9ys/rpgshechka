@@ -1,15 +1,29 @@
 $(document).ready(function () {
-    $('.battleStart').click(function () {
-        console.log('battleStart');
-        battleStart()
+
+    $.post(
+        '/warriorProps',
+    {mobID:$('.battle_wrap').data('mob')},
+    function (result) {
+        console.log(result);
+        $('.battleStart').click(function () {
+            battleStart(result)
+        });
     });
+
+
+
 });
 
-function battleStart(){
+function battleStart(result){
+    // console.log('result', result);
+    warriors = result;
+    console.log('warriors', warriors);
+    ModalClear();
     warriors ={
         1: {
             HP_start: 50,
             HP: 50,
+            lvl: 1,
             cube: [4,4],
             attack: 1,
             defend: 1,
@@ -25,21 +39,40 @@ function battleStart(){
         }
     };
     loot = {
-        cuprum: {
-            chance: 100,
-            min: 1,
-            max: 10,
+        money: {
+            cuprum: {
+                chance: 100,
+                min: 1,
+                max: 10,
+            },
         },
         receipt: {
-            chance: 5,
+            potion: {
+                chance: 5,
+                min: 1,
+                max: 1,
+            }
         },
         provision: {
-            chance: 50,
+            wheat: {
+                chance: 50,
+                min: 1,
+                max: 3,
+            },
+            corn: {
+                chance: 50,
+                min: 1,
+                max: 3,
+            }
         },
         resources: {
-            chance: 50,
+            patSkin: {
+                chance: 10,
+                min: 1,
+                max: 1,
+            }
         }
-    }
+    };
 
     console.log('warrior1',warriors[1]);
     console.log('warrior2',warriors[2]);
@@ -95,7 +128,9 @@ function fight(first) {
     } else {
         if(warriors[2]['HP']<=0){
             finish_message = 'боец 2 убит';
-            $('#finishBattleModal').find('.modal-body').append('<span>'+finish_message+'</span>');
+
+
+            $('#finishBattleModal').find('.modal-body').append(lootCalculate(loot));
         } else {
             finish_message = 'Вы потерпели поражение';
         }
@@ -106,4 +141,43 @@ function fight(first) {
 
 function cubeHit(cubeFace) {
     return Math.floor(Math.random()*cubeFace)+1;
+}
+
+function lootCalculate(loot) {
+    arLoot = {};
+    var content = '';
+    console.log('loot', loot);
+    $.each(loot, function (section,value) {
+        console.log('loot', value);
+        $.each(value, function (name, itemPops) {
+            console.log('lootItem', itemPops['chance']);
+            if(lootChance()<=itemPops['chance']){
+                var count = Math.floor(Math.random()*itemPops['max'])+itemPops['min'];
+                arLoot[name] = count;
+                console.log('name: ', name, 'count: ', count, 'arLoot[name]', arLoot[name]);
+                content = content + lootView(name,'/public/image/loot/wheat.jpg', count)
+            }
+        });
+    });
+    console.log('arLoot', arLoot);
+    return content;
+}
+
+function lootChance() {
+    return Math.floor(Math.random()*100)+1;
+}
+
+function lootView(name,img, count){
+    return '<div class="loot_item">'+
+                '<div class="loot_img">'+
+                    '<img src="'+img+'" alt="" title="'+name+'">'+
+                '</div>'+
+                '<div class="loot_count">'+count+'</div>'+
+            '</div>';
+}
+
+function ModalClear(){
+    $('#finishBattleModal').find('.modal-header').html('');
+    $('#finishBattleModal').find('.modal-body').html('');
+    $('#finishBattleModal').find('.modal-footer').html('');
 }

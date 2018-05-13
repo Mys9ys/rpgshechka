@@ -7,10 +7,10 @@
         2:{ XP:250, HP:10, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
         3:{ XP:500, HP:10, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
         4:{ XP:1000, HP:10, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
-        5:{ XP:2000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
-        6:{ XP:4000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
-        7:{ XP:8000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
-        8:{ XP:16000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
+        5:{ XP:2000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 50},
+        6:{ XP:4000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 10},
+        7:{ XP:8000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 10},
+        8:{ XP:16000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 10},
         };
     console.log('lvlProps', lvlProps[8]['XP']);
 
@@ -18,10 +18,8 @@
 <style>
 
 </style>
-
+<?//dd(Auth::id())?>
 <div class="container">
-<div class="cuprum_coin"></div>
-
     <div class="battle_wrap" data-mob="<?=$_REQUEST['id']?>">
         <div class="warrior_box warrior1 left">
             <div class="cube_table"></div>
