@@ -1,12 +1,21 @@
 $(document).ready(function () {
 
+
+
     $.post(
         '/warriorProps',
     {mobID:$('.battle_wrap').data('mob')},
-    function (result) {
-        console.log(result);
+    function (warriors) {
+            $.each(warriors, function (key, warrior) {
+                $('.warrior'+key).find('.HP_bar_fill').animate({
+                    width: Math.floor(warrior['HP']/warrior['HP_start']*144)
+                });
+                $('.warrior'+key).find('.HP_bar_text').text(warrior['HP']);
+                $('.warrior'+key).find('.warrior_img').html('<img src="'+warrior['avatar']+'">');
+                console.log('img', $('.warrior'+key).find('.warrior_img img'));
+            });
         $('.battleStart').click(function () {
-            battleStart(result)
+            battleStart(warriors);
         });
     });
 
@@ -15,64 +24,64 @@ $(document).ready(function () {
 });
 
 function battleStart(result){
-    // console.log('result', result);
     warriors = result;
+    // console.log('result', result);
     console.log('warriors', warriors);
     ModalClear();
-    warriors ={
-        1: {
-            HP_start: 50,
-            HP: 50,
-            lvl: 1,
-            cube: [4,4],
-            attack: 1,
-            defend: 1,
-            starting: 1,
-        },
-        2: {
-            HP_start: 10,
-            HP: 10,
-            cube: [4],
-            attack: 0,
-            defend: 1,
-            starting: 0,
-        }
-    };
-    loot = {
-        money: {
-            cuprum: {
-                chance: 100,
-                min: 1,
-                max: 10,
-            },
-        },
-        receipt: {
-            potion: {
-                chance: 5,
-                min: 1,
-                max: 1,
-            }
-        },
-        provision: {
-            wheat: {
-                chance: 50,
-                min: 1,
-                max: 3,
-            },
-            corn: {
-                chance: 50,
-                min: 1,
-                max: 3,
-            }
-        },
-        resources: {
-            patSkin: {
-                chance: 10,
-                min: 1,
-                max: 1,
-            }
-        }
-    };
+    // warriors ={
+    //     1: {
+    //         HP_start: 50,
+    //         HP: 50,
+    //         lvl: 1,
+    //         cube: [4,4],
+    //         attack: 1,
+    //         defend: 1,
+    //         starting: 1,
+    //     },
+    //     2: {
+    //         HP_start: 10,
+    //         HP: 10,
+    //         cube: [4],
+    //         attack: 0,
+    //         defend: 1,
+    //         starting: 0,
+    //     }
+    // };
+    // loot = {
+    //     money: {
+    //         cuprum: {
+    //             chance: 100,
+    //             min: 1,
+    //             max: 10,
+    //         },
+    //     },
+    //     receipt: {
+    //         potion: {
+    //             chance: 5,
+    //             min: 1,
+    //             max: 1,
+    //         }
+    //     },
+    //     provision: {
+    //         wheat: {
+    //             chance: 50,
+    //             min: 1,
+    //             max: 3,
+    //         },
+    //         corn: {
+    //             chance: 50,
+    //             min: 1,
+    //             max: 3,
+    //         }
+    //     },
+    //     resources: {
+    //         patSkin: {
+    //             chance: 10,
+    //             min: 1,
+    //             max: 1,
+    //         }
+    //     }
+    // };
 
     console.log('warrior1',warriors[1]);
     console.log('warrior2',warriors[2]);
@@ -95,8 +104,11 @@ function fight(first) {
         //
         var second = (first == 1) ? 2 : 1;
         var damage = '';
-        $.each(warriors[first]['cube'], function (key,item) {
-            damage = Number(damage) + cubeHit(item);
+        $.each(warriors[first]['cube'], function (key,cube) {
+            var hit = cubeHit(cube);
+            if(typeof(hit)=="number"){
+                damage = Number(damage) + hit;
+            }
             console.log(damage);
         });
         warriors[second]['HP'] = Number(warriors[second]['HP'])-damage;
@@ -119,8 +131,6 @@ function fight(first) {
             }
         });
 
-        //
-
          console.log('боец',first,' нанес бойцу',second,' ', damage, ' урона');
          setTimeout(function (args) {
              fight(second)
@@ -128,9 +138,7 @@ function fight(first) {
     } else {
         if(warriors[2]['HP']<=0){
             finish_message = 'боец 2 убит';
-
-
-            $('#finishBattleModal').find('.modal-body').append(lootCalculate(loot));
+            $('#finishBattleModal').find('.modal-body').append(lootCalculate(warriors[2]['loot']));
         } else {
             finish_message = 'Вы потерпели поражение';
         }
@@ -139,15 +147,18 @@ function fight(first) {
     }
 }
 
-function cubeHit(cubeFace) {
-    return Math.floor(Math.random()*cubeFace)+1;
+function cubeHit(cube) {
+    console.log('cube', cube['type']);
+    if(cube['type'] == 'model'){
+        return cube['surface'+(Math.floor(Math.random()*cube['count_surface'])+1)];
+    }
 }
 
 function lootCalculate(loot) {
     arLoot = {};
     var content = '';
     console.log('loot', loot);
-    $.each(loot, function (section,value) {
+    $.each(JSON.parse(loot), function (section,value) {
         console.log('loot', value);
         $.each(value, function (name, itemPops) {
             console.log('lootItem', itemPops['chance']);

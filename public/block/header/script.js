@@ -1,6 +1,8 @@
 $(document).ready(function () {
     health_load();
     energy_load();
+    XP_load()
+    console.log('lvlProps', lvlProps[8]['XP']);
 });
 // функция восстановления жизни
 function health_load(){
@@ -69,5 +71,33 @@ function energy_load() {
             width: (energy_really)/energy_const*100
         }, options);
     }
-
 }
+
+function XP_load() {
+    var lvl_really = $('.lvl_count').text();
+    var XP_really = $('.XP_bar').data('xp_really');
+    console.log('lvl_really', lvl_really);
+    console.log('XP_really', XP_really);
+    var needXP = lvlProps[Number(lvl_really)+1]['XP']
+        $('.XP_bar').append('<div class="user_bar_fill"></div><span class="user_bar_fill_text">'+XP_really+'</span>');
+    $('.XP_bar').find('.user_bar_fill').css('background', 'rgb(34,164,245)');
+    var options = {
+        duration: 400,
+        easing: 'linear'
+    };
+    $('.XP_bar').find('.user_bar_fill').animate({
+        width: (XP_really)/needXP*100
+    }, options);
+    $('.XP_bar').attr('title', 'up '+(Number(needXP)-Number(XP_really)));
+}
+
+var lvlProps = {
+    1:{ XP:0, HP:50, starting:1, speed:1, cubePoint: 0},
+    2:{ XP:250, HP:10, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
+    3:{ XP:500, HP:10, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
+    4:{ XP:1000, HP:10, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10},
+    5:{ XP:2000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 50},
+    6:{ XP:4000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 10},
+    7:{ XP:8000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 10},
+    8:{ XP:16000, HP:20, starting:1, speed:2, cubePoint: 1, silver: 50, energy: 10, mana: 10},
+};

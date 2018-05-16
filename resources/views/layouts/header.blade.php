@@ -60,8 +60,13 @@
                         </a>
                         <div class="user_info left">
                             <?$CombatProps = \App\user\CombatProps::where('user', '=', Auth::id())->first();?>
+                            <?$UserProps = \App\user\Props::where('user', '=', Auth::id())->first();?>
                             <div class="user_nik ">{{ Auth::user()->nik }}</div>
                             <div class="user_info_contain">
+                                <div class="lvl_box left">
+                                    <div class="lvl_title">lvl</div>
+                                    <div class="lvl_count"><?=$UserProps['lvl']?></div>
+                                </div>
                                 <div class="user_bars left">
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-heart fa-icon left" aria-hidden="true"></i>
@@ -82,8 +87,9 @@
                                     <div class="user_bar_wrap">
                                         <span class="left fa-icon XP_icon">xp</span>
                                         <div class="XP_bar user_bar left"
+                                             {{--data-XP_lvlUP="<?=$CombatProps['energy_really']?>"--}}
+                                             data-XP_really="<?=$UserProps['XP']?>"></div>
 
-                                             data-XP_really="<?=$CombatProps['XP']?>"></div>
                                     </div>
                                     <div class="user_bar_wrap">
                                         <i class="fa fa-star fa-icon left" aria-hidden="true"></i>
@@ -93,7 +99,6 @@
                                     </div>
                                 </div>
                                 <div class="user_money left">
-                                    <?$UserProps = \App\user\Props::where('user', '=', Auth::id())->first();?>
                                     <div class="user_money_wrap">
                                         <div class="coin_icon coin_gold left"></div>
                                         <div class="money_gold money_box left"><?=$UserProps['gold']?></div>

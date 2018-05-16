@@ -80,7 +80,7 @@
   overflow: hidden;
 }
 .warrior_box .bar_block .mana_bar .mana_bar_fill {
-  width: 100%;
+  width: 0px;
   height: 100%;
   position: absolute;
   top: 0;
@@ -106,7 +106,7 @@
   background: grey;
 }
 .warrior_box .bar_block .HP_bar .HP_bar_fill {
-  width: 100%;
+  width: 0px;
   height: 100%;
   position: absolute;
   top: 0;
