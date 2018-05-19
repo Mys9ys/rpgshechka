@@ -14,6 +14,10 @@ $(document).ready(function () {
                 $('.warrior'+key).find('.warrior_img').html('<img src="'+warrior['avatar']+'">');
                 console.log('img', $('.warrior'+key).find('.warrior_img img'));
             });
+            if(warriors[1]['energy_really']<warriors[2]['energy_use']){
+                $('#finishBattleModal').find('.modal-header').html('Недостаточно энергии для боя');
+                $('#finishBattleModal').modal('show');
+            }
         $('.battleStart').click(function () {
             battleStart(warriors);
         });
@@ -137,8 +141,9 @@ function fight(first) {
          },1000);
     } else {
         if(warriors[2]['HP']<=0){
-            finish_message = 'боец 2 убит';
+            finish_message = 'Вы одолели '+warriors[2]['name'];
             $('#finishBattleModal').find('.modal-body').append(lootCalculate(warriors[2]['loot']));
+            console.log('warriors', warriors);
         } else {
             finish_message = 'Вы потерпели поражение';
         }
@@ -191,4 +196,8 @@ function ModalClear(){
     $('#finishBattleModal').find('.modal-header').html('');
     $('#finishBattleModal').find('.modal-body').html('');
     $('#finishBattleModal').find('.modal-footer').html('');
+}
+
+function battleResult() {
+    
 }

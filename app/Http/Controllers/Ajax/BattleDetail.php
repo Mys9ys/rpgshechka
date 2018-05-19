@@ -29,22 +29,17 @@ class BattleDetail extends Controller
         }
         $mobsProp['HP_start'] = $mobsProp['HP'];
         $mobsProp['cube'] = $arCubeMob;
+        $combatProps['cube'] = $arCubeUser;
+        $combatProps['HP_start'] = $combatProps['health_really'];
+        $combatProps['HP'] = $combatProps['health_const'];
+        $combatProps['avatar'] = '/public/image/300warrior.jpg';
+        $combatProps['lvl'] = \Auth::user()->nik;
+        $combatProps['name'] = $userProps['lvl'];
+        $combatProps['XP'] = $userProps['XP'];
+
         $warriors = array(
-               1 => array(
-                   'name' => \Auth::user()->nik,
-                   'lvl' => $userProps['lvl'],
-                   'XP' => $userProps['XP'],
-                   'HP_start' => $combatProps['health_const'],
-                   'HP' => $combatProps['health_really'],
-                   'starting' => $combatProps['starting'],
-                   'attack' => $combatProps['attack'],
-                   'defend' => $combatProps['defend'],
-                   'cube' => $arCubeUser,
-                   'avatar' => '/public/image/300warrior.jpg'
-               ),
+               1 => $combatProps,
                2 => $mobsProp,
-
-
         );
         return $warriors;
     }
